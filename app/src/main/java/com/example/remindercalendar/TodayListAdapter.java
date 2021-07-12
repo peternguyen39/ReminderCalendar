@@ -1,6 +1,7 @@
 package com.example.remindercalendar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,16 +14,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.TodayViewHolder> {
-    private ArrayList<Reminder> reminderList;
+    private ArrayList<Task> taskList;
 
-    public TodayListAdapter(Context context, ArrayList<Reminder> list) {
-        reminderList = list;
+    public TodayListAdapter(Context context, ArrayList<Task> list) {
+        taskList = list;
     }
 
 
     @Override
     public TodayViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.reminder_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_item, parent, false);
         return new TodayViewHolder(this, view);
     }
 
@@ -31,17 +32,18 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         //TODO: Read data from storage\
         //TODO: Implement behavior of starred
         //TODO: Implement Activity for ReminderItem
+        //TODO: Set onclickListener for each Task item
     }
 
     @Override
     public int getItemCount() {
-        return reminderList.size();
+        return taskList.size();
     }
 
-    public class TodayViewHolder extends RecyclerView.ViewHolder {
+    public class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView title;
         private TextView duedate;
-        private CheckBox starred;
+        private CheckBox star;
         private TodayListAdapter todayListAdapter;
 
         public TodayViewHolder(TodayListAdapter listAdapter, @NonNull View itemView) {
@@ -49,7 +51,21 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             todayListAdapter = listAdapter;
             title = itemView.findViewById(R.id.reminder_title);
             duedate = itemView.findViewById(R.id.due_date);
-            starred = itemView.findViewById(R.id.star_important);
+            star = itemView.findViewById(R.id.star_important);
+            star.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    todayListAdapter.taskList.get(getAdapterPosition()).starred = star.isChecked();
+                }
+            });
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(v.getContext(), TaskViewActivity.class);
+            intent.putExtra("ListPosition", getAdapterPosition());
+            v.getContext().startActivity(intent);
         }
     }
 }
