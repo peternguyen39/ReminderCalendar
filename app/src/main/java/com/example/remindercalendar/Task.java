@@ -8,4 +8,5 @@ public class Task {
     public Date due_date;
     public String task_description;
     public ArrayList<Reminder> reminder_list;
+    public boolean starred;
 }
