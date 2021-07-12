@@ -8,15 +8,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:text="Reminder title"
+        android:text="@string/reminder_title"
         android:layout_margin="10dp"
         android:textColor="@color/teal_700"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"/>
     <TextView
+        android:id="@+id/due_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Due date"
+        android:text="@string/due_date"
         app:layout_constraintTop_toBottomOf="@+id/reminder_title"
         android:textSize="16sp"
         android:layout_margin="10dp"

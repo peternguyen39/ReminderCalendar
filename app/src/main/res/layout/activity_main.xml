@@ -6,10 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <view class="androidx.appcompat.app.AlertController$RecycleListView"
+    <view
+        class="androidx.recyclerview.widget.RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/today_view">
+
     </view>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
