@@ -11,13 +11,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.TodayViewHolder> {
-    private ArrayList<Task> taskList;
+    private List<Task> taskList;
+    private LayoutInflater inflater;
 
-    public TodayListAdapter(Context context, ArrayList<Task> list) {
-        taskList = list;
+    public TodayListAdapter(Context context) {
+        inflater = LayoutInflater.from(context);
     }
 
 
@@ -33,6 +34,20 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         //TODO: Implement behavior of starred
         //TODO: Implement Activity for ReminderItem
         //TODO: Set onclickListener for each Task item
+
+        if (taskList != null) {
+            Task current = taskList.get(position);
+            holder.title.setText(current.title);
+            //holder.duedate.setText(current.due_time);
+            holder.star.setChecked(current.starred);
+        } else {
+            holder.title.setText("No Task Available");
+        }
+    }
+
+    void setTaskList(List<Task> tasks) {
+        taskList = tasks;
+        notifyDataSetChanged();
     }
 
     @Override
