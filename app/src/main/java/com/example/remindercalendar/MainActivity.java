@@ -44,13 +44,14 @@ public class MainActivity extends AppCompatActivity {
     private void actionToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationIcon(R.drawable.ic_launcher_foreground);
+        toolbar.setNavigationIcon(R.drawable.action_icon_menu);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
+        toolbar.setTitle("Remindinator");
     }
 
     private void init() {
