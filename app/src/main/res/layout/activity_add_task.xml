@@ -34,10 +34,74 @@
         android:textSize="24sp" />
 
     <Button
-        android:id="@+id/open_location_button"
+        android:id="@+id/addTask_date_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:text="Date"
         android:onClick="showDatePicker"/>
+
+    <TextView
+        android:id="@+id/addTask_date_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="01/01/2000"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/addTask_dueTime_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Due Time"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/addTask_time_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Time"
+        android:onClick="showTimePicker"/>
+
+    <TextView
+        android:id="@+id/addTask_time_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="24sp"/>
+
+    <TextView
+        android:id="@+id/addTask_description_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Description"
+        android:textSize="24sp"/>
+
+    <EditText
+        android:id="@+id/addTask_description_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="(Blank)"/>
+
+    <CheckBox
+        android:id="@+id/addTask_isStarred_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?android:attr/starStyle" />
+
+    <Button
+        android:id="@+id/addTask_save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Save"
+        android:onClick="saveButton"/>
+
+    <Button
+        android:id="@+id/addTask_cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Cancel"
+        android:onClick="cancelButton"/>
 </LinearLayout>
