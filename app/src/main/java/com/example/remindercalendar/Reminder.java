@@ -1,9 +1,9 @@
 package com.example.remindercalendar;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Reminder {
-    public Date date;
+    public Calendar reminder_time;
     //public Time time;
 
 }

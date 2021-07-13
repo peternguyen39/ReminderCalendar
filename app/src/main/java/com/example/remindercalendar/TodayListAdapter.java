@@ -37,7 +37,9 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
 
     @Override
     public int getItemCount() {
-        return taskList.size();
+        if (taskList != null)
+            return taskList.size();
+        else return 0;
     }
 
     public class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
