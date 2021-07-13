@@ -4,10 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 @Entity(tableName = "task_table")
-public class Task {
+public class Task implements Serializable {
     @PrimaryKey
     @NonNull
     //@ColumnInfo(name = "title")
@@ -22,4 +23,5 @@ public class Task {
     //public Reminder reminder;
     public Calendar reminder_time;
     public boolean starred;
+
 }

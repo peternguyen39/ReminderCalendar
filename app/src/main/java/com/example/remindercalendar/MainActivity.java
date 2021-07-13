@@ -1,6 +1,10 @@
 package com.example.remindercalendar;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -18,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton fab;
     private RecyclerView todayView;
     private TaskViewModel taskViewModel;
+    public int NEW_TASK_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +40,35 @@ public class MainActivity extends AppCompatActivity {
                 adapter.setTaskList(tasks);
             }
         });
-        //fab.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-        //        return;
-        //    }
-        //});
+        fab = findViewById(R.id.fab_add);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
+                startActivityForResult(intent, NEW_TASK_ACTIVITY_REQUEST_CODE);
+            }
+        });
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Intent intent = this.getIntent();
+            Bundle bundle = intent.getExtras();
+            //TODO: CANNOT GETEXTRA DATA FROM INTENT -> INTENT EXTRAS ARE ALWAYS NULL
+            Log.d("Intent received:", String.valueOf(getIntent().getExtras()));
+            if (bundle != null) {
+                Task task = (Task) getIntent().getSerializableExtra(AddTaskActivity.EXTRA_REPLY);
+                Log.d("Task status", "RECEIVED TASK!!!!");
+                taskViewModel.insert(task);
+            } else Log.d("Task empty", "TASK IS EMPTY AND NOT ADDED!!!");
+        } else {
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Cannot add task",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
 
 }
