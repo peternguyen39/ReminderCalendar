@@ -1,19 +1,21 @@
 package com.example.remindercalendar;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.ListView;
+
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.DialogFragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView todayView;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private ListView menuListView;
+    private RecyclerView menuRecyclerView;
+    private List<MenuItem> menuItemList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +35,30 @@ public class MainActivity extends AppCompatActivity {
 
         init();
         actionToolbar();
+        setListeners();
+        addMenuItemsToMenuList();
+    }
 
+    private void addMenuItemsToMenuList() {
+        MenuItemAdapter menuItemAdapter = new MenuItemAdapter(menuItemList);
+
+        menuRecyclerView.setAdapter(menuItemAdapter);
+        menuRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+    }
+
+    private void setListeners() {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                openAddTask();
             }
         });
+    }
+
+    private void openAddTask() {
+        Intent intent = new Intent(this, AddTaskActivity.class);
+
+        startActivity(intent);
     }
 
     private void actionToolbar() {
@@ -58,8 +78,13 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         todayView = (RecyclerView) findViewById(R.id.today_view);
-        menuListView = (ListView) findViewById(R.id.menu_listview);
+        menuRecyclerView = (RecyclerView) findViewById(R.id.menu_list);
         fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
+
+        menuItemList = new ArrayList<MenuItem>();
+        menuItemList.add(new MenuItem("All"));
+        menuItemList.add(new MenuItem("Today"));
+        menuItemList.add(new MenuItem("Important"));
     }
 
 

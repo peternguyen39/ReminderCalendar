@@ -2,6 +2,7 @@ package com.example.remindercalendar;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -10,11 +11,20 @@ public class AddTaskActivity extends AppCompatActivity {
 
     public Task task;
     private int yy, mm, dd;
+    Button backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+
+        backButton = findViewById(R.id.save_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
 
@@ -33,4 +43,5 @@ public class AddTaskActivity extends AppCompatActivity {
     public void processTimePickerResult(int hourOfDay, int minute) {
         task.due_time.set(yy, mm, dd, hourOfDay, minute);
     }
+
 }

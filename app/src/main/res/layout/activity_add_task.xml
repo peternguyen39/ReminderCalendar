@@ -40,4 +40,11 @@
         android:layout_marginBottom="24dp"
         android:text="Date"
         android:onClick="showDatePicker"/>
+    <Button
+        android:id="@+id/save_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add task"
+        android:onClick="back"/>
+
 </LinearLayout>
