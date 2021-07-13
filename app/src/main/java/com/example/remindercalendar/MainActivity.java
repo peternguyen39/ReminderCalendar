@@ -6,9 +6,14 @@ import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import android.util.Log;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -26,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private RecyclerView menuRecyclerView;
     private List<MenuItem> menuItemList;
+    private TaskViewModel taskViewModel;
+    public int NEW_TASK_ACTIVITY_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,19 @@ public class MainActivity extends AppCompatActivity {
         actionToolbar();
         setListeners();
         addMenuItemsToMenuList();
+
+        final TodayListAdapter adapter = new TodayListAdapter(this);
+        todayView.setAdapter(adapter);
+        todayView.setLayoutManager(new LinearLayoutManager(this));
+
+        taskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
+        taskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
+            @Override
+            public void onChanged(List<Task> tasks) {
+                adapter.setTaskList(tasks);
+            }
+        });
+        
     }
 
     private void addMenuItemsToMenuList() {
@@ -49,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openAddTaskActivity();
+                Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
+                startActivityForResult(intent, NEW_TASK_ACTIVITY_REQUEST_CODE);
             }
         });
     }
@@ -86,5 +107,25 @@ public class MainActivity extends AppCompatActivity {
         menuItemList.add(new MenuItem("Important"));
     }
 
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Intent intent = this.getIntent();
+            Bundle bundle = intent.getExtras();
+            //TODO: CANNOT GETEXTRA DATA FROM INTENT -> INTENT EXTRAS ARE ALWAYS NULL
+            Log.d("Intent received:", String.valueOf(getIntent().getExtras()));
+            if (bundle != null) {
+                Task task = (Task) getIntent().getSerializableExtra(AddTaskActivity.EXTRA_REPLY);
+                Log.d("Task status", "RECEIVED TASK!!!!");
+                taskViewModel.insert(task);
+            } else Log.d("Task empty", "TASK IS EMPTY AND NOT ADDED!!!");
+        } else {
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Cannot add task",
+                    Toast.LENGTH_LONG).show();
+        }
+    }
 
 }
