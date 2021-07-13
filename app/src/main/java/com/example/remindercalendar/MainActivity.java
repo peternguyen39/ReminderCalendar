@@ -61,16 +61,5 @@ public class MainActivity extends AppCompatActivity {
         fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
     }
 
-    public void showDatePicker(View view) {
-        DialogFragment newFragment = new com.example.remindercalendar.DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(),"datePicker");
-    }
-
-    public void processDatePickerResult(int year, int month, int day) {
-        String month_string = Integer.toString(month+1);
-        String day_string = Integer.toString(day);
-        String year_string = Integer.toString(year);
-        String dateMessage = (month_string + "/" + day_string + "/" + year_string);
-    }
 
 }

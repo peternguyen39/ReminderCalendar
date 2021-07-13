@@ -2,12 +2,10 @@ package com.example.remindercalendar;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.widget.DatePicker;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.Fragment;
-
-import android.widget.DatePicker;
 
 import java.util.Calendar;
 
@@ -32,7 +30,7 @@ public class DatePickerFragment extends DialogFragment
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        MainActivity activity = (MainActivity) getActivity();
+        AddTaskActivity activity = (AddTaskActivity) getActivity();
         activity.processDatePickerResult(year, month, day);
     }
 }
