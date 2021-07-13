@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/addTask_heading_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NEW TASK"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/addTask_title_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/addTask_title_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Title no 1"/>
+
+    <TextView
+        android:id="@+id/addTask_dueDate_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Due Date"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/open_location_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="Date"
+        android:onClick="showDatePicker"/>
+</LinearLayout>
