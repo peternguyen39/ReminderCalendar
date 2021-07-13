@@ -38,9 +38,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
-            android:backgroundTint="@color/blue_500"
+            android:backgroundTint="@color/orange_800"
             android:contentDescription="@string/add_reminder"
-            app:srcCompat="@drawable/ic_add_white" />
+            app:srcCompat="@drawable/ic_add_white"
+            android:elevation="5dp"/>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.google.android.material.navigation.NavigationView

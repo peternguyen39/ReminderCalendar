@@ -5,46 +5,82 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/addTask_heading_textview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="NEW TASK"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/addTask_heading_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="NEW TASK"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/addTask_title_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Title"
-        android:textSize="24sp" />
+        <TextView
+            android:id="@+id/addTask_title_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="24sp"
+            android:textColor="@color/black" />
 
-    <EditText
-        android:id="@+id/addTask_title_edittext"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Title no 1"/>
+        <EditText
+            android:id="@+id/addTask_title_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:textSize="24sp"
+            android:hint="Add title"/>
 
-    <TextView
-        android:id="@+id/addTask_dueDate_textview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Due Date"
-        android:textSize="24sp" />
+        <TextView
+            android:id="@+id/addTask_description_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="24sp"
+            android:textColor="@color/black" />
 
-    <Button
-        android:id="@+id/open_location_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:text="Date"
-        android:onClick="showDatePicker"/>
+        <EditText
+            android:id="@+id/addTask_description_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:textSize="24sp"
+            android:hint="Add description"/>
+
+        <TextView
+            android:id="@+id/addTask_dueDate_textview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:text="Due Date"
+            android:textSize="24sp"
+            android:textColor="@color/black"/>
+
+        <Button
+            android:id="@+id/open_location_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick a date"
+            android:textSize="20sp"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/blue_500"
+            android:onClick="showDatePicker"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/save_button"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="10"
         android:text="Add task"
-        android:onClick="back"/>
+        android:textSize="20dp"
+        android:backgroundTint="@color/orange_800"
+        android:onClick="back" />
 
 </LinearLayout>

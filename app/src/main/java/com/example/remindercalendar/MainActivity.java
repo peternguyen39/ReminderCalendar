@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
@@ -50,12 +49,12 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openAddTask();
+                openAddTaskActivity();
             }
         });
     }
 
-    private void openAddTask() {
+    private void openAddTaskActivity() {
         Intent intent = new Intent(this, AddTaskActivity.class);
 
         startActivity(intent);
