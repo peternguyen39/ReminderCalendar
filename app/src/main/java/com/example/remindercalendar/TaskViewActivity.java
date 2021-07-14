@@ -111,7 +111,7 @@ public class TaskViewActivity extends AppCompatActivity {
     public void processTimePickerResult(int hourOfDay, int minute) {
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
         calendar.set(Calendar.MINUTE, minute);
-        taskview_duedate.setText(new SimpleDateFormat("hh:mm").format(calendar.getTime()));
+        taskview_duetime.setText(new SimpleDateFormat("hh:mm").format(calendar.getTime()));
     }
 
     public void deleteTask(View view) {
