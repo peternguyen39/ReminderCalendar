@@ -71,7 +71,7 @@ public class AddTaskActivity extends AppCompatActivity {
         this.minute = minute;
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
         calendar.set(Calendar.MINUTE, minute);
-        timeTextView.setText(new SimpleDateFormat("hh:mm").format(calendar.getTime()));
+        timeTextView.setText(new SimpleDateFormat("KK:mm aa").format(calendar.getTime()));
     }
 
     @SuppressLint("ResourceType")

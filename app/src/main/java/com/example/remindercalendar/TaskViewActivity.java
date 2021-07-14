@@ -75,7 +75,7 @@ public class TaskViewActivity extends AppCompatActivity {
         taskview_title.setText(currentTask.title);
         taskview_description.setText(currentTask.task_description);
         taskview_duedate.setText(new SimpleDateFormat("EEE, dd-MM-yyyy").format(currentTask.due_time.getTime()));
-        taskview_duetime.setText(new SimpleDateFormat("hh:mm").format(currentTask.due_time.getTime()));
+        taskview_duetime.setText(new SimpleDateFormat("KK:mm aa").format(currentTask.due_time.getTime()));
         star.setChecked(currentTask.starred);
         calendar = currentTask.due_time;
 
@@ -111,7 +111,7 @@ public class TaskViewActivity extends AppCompatActivity {
     public void processTimePickerResult(int hourOfDay, int minute) {
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
         calendar.set(Calendar.MINUTE, minute);
-        taskview_duetime.setText(new SimpleDateFormat("hh:mm").format(calendar.getTime()));
+        taskview_duetime.setText(new SimpleDateFormat("KK:mm aa").format(calendar.getTime()));
     }
 
     public void deleteTask(View view) {
