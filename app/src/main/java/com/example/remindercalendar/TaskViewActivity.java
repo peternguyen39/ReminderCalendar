@@ -55,6 +55,7 @@ public class TaskViewActivity extends AppCompatActivity {
         taskview_duedate = findViewById(R.id.taskview_duedate_text);
         taskview_duetime = findViewById(R.id.taskview_duetime_text);
         taskview_description = findViewById(R.id.taskview_description_text);
+        taskview_editButton = findViewById(R.id.taskview_edit_button);
         taskview_dateButton = findViewById(R.id.taskview_date_button);
         taskview_timeButton = findViewById(R.id.taskview_time_button);
         taskview_saveButton = findViewById(R.id.taskview_save_button);
@@ -77,7 +78,6 @@ public class TaskViewActivity extends AppCompatActivity {
         star.setChecked(currentTask.starred);
         calendar = currentTask.due_time;
 
-        /*
         taskview_title.setEnabled(false);
         taskview_description.setEnabled(false);
         taskview_editButton.setEnabled(true);
@@ -90,7 +90,6 @@ public class TaskViewActivity extends AppCompatActivity {
         taskview_saveButton.setVisibility(View.INVISIBLE);
         taskview_cancelButton.setEnabled(false);
         taskview_cancelButton.setVisibility(View.INVISIBLE);
-         */
     }
 
     public void showDatePicker(View view) {
@@ -114,9 +113,8 @@ public class TaskViewActivity extends AppCompatActivity {
         taskview_duedate.setText(new SimpleDateFormat("KK:mm aa").format(calendar.getTime()));
     }
 
-    /*
+
     public void editTask(View view) {
-        taskview_title.setEnabled(true);
         taskview_description.setEnabled(true);
         taskview_editButton.setEnabled(false);
         taskview_editButton.setVisibility(View.INVISIBLE);
@@ -129,7 +127,7 @@ public class TaskViewActivity extends AppCompatActivity {
         taskview_cancelButton.setEnabled(true);
         taskview_cancelButton.setVisibility(View.VISIBLE);
     }
-    */
+
     public void saveTask(View view) {
         currentTask.title = taskview_title.getText().toString();
         currentTask.due_time = calendar;
@@ -137,14 +135,15 @@ public class TaskViewActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.putExtra("EditedTask", currentTask);
         setResult(RESULT_OK, intent);
-        finish();
+        initialState();
+        //finish();
     }
 
     public void cancelEdit(View view) {
         initialState();
         Intent intent = new Intent();
         setResult(RESULT_CANCELED);
-        finish();
+        //finish();
     }
 
     public void tickStarred(View view) {
@@ -152,6 +151,9 @@ public class TaskViewActivity extends AppCompatActivity {
     }
 
     public void back(View view) {
+        Intent intent = new Intent();
+        intent.putExtra("EditedTask", currentTask);
+        setResult(RESULT_OK, intent);
         finish();
     }
 }

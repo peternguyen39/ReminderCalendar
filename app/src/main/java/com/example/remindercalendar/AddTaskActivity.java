@@ -46,6 +46,10 @@ public class AddTaskActivity extends AppCompatActivity {
         yy = calendar.get(Calendar.YEAR);
         hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
         minute = calendar.get(Calendar.MINUTE);
+
+        dateTextView.setText(new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime()));
+        calendar.add(Calendar.HOUR_OF_DAY, 1);
+        timeTextView.setText(new SimpleDateFormat("KK:mm aa").format(calendar.getTime()));
     }
 
     public void showDatePicker(View view) {
@@ -63,7 +67,7 @@ public class AddTaskActivity extends AppCompatActivity {
         mm = month;
         dd = day;
         calendar.set(year, month, day);
-        dateTextView.setText(new SimpleDateFormat("EEE, dd-MM-yyyy").format(calendar.getTime()));
+        dateTextView.setText(new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime()));
     }
 
     public void processTimePickerResult(int hourOfDay, int minute) {

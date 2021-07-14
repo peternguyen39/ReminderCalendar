@@ -24,4 +24,7 @@ public interface TaskDAO {
 
     @Update
     void updateTask(Task task);
+
+    //@Query("SELECT * from task_table WHERE starred=1")
+    //LiveData<List<Task>> importantTask();
 }
