@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.TodayViewHolder> {
@@ -30,15 +31,11 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
 
     @Override
     public void onBindViewHolder(@NonNull TodayListAdapter.TodayViewHolder holder, int position) {
-        //TODO: Read data from storage\
-        //TODO: Implement behavior of starred
-        //TODO: Implement Activity for ReminderItem
-        //TODO: Set onclickListener for each Task item
 
         if (taskList != null) {
             Task current = taskList.get(position);
             holder.title.setText(current.title);
-            //holder.duedate.setText(current.due_time);
+            holder.duedate.setText(new SimpleDateFormat("EEE, dd-MM-yyyy hh:mm").format(current.due_time.getTime()));
             holder.star.setChecked(current.starred);
         } else {
             holder.title.setText("No Task Available");
