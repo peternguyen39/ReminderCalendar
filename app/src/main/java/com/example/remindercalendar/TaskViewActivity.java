@@ -57,10 +57,10 @@ public class TaskViewActivity extends AppCompatActivity {
         taskview_duetime = findViewById(R.id.taskview_duetime_text);
         taskview_description = findViewById(R.id.taskview_description_text);
         taskview_editButton = findViewById(R.id.taskview_edit_button);
-        taskview_dateButton = findViewById(R.id.taskView_date_button);
-        taskview_timeButton = findViewById(R.id.taskView_time_button);
+        taskview_dateButton = findViewById(R.id.taskview_date_button);
+        taskview_timeButton = findViewById(R.id.taskview_time_button);
         taskview_saveButton = findViewById(R.id.taskview_save_button);
-        taskview_cancelButton = findViewById(R.id.taskView_cancel_button);
+        taskview_cancelButton = findViewById(R.id.taskview_cancel_button);
         star=findViewById(R.id.taskview_isStarred_checkbox);
 
         Log.d("TaskView", String.valueOf(currentTask));
@@ -146,5 +146,9 @@ public class TaskViewActivity extends AppCompatActivity {
 
     public void tickStarred(View view) {
         currentTask.starred = star.isChecked();
+    }
+
+    public void back(View view) {
+        finish();
     }
 }
