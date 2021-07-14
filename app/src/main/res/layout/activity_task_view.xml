@@ -28,20 +28,10 @@
             app:layout_constraintLeft_toRightOf="@id/up_button"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:text="@string/new_task"
+            android:text="EDIT TASK"
             android:textSize="30sp"
             android:textStyle="bold" />
-        <Button
-            android:id="@+id/taskview_edit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_margin="2dp"
-            android:backgroundTint="@color/orange_800"
-            android:text="@string/save"
-            android:onClick="editTask"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -50,13 +40,13 @@
         android:orientation="vertical"
         android:padding="12dp">
 
-        <EditText
+        <TextView
             android:id="@+id/taskview_title_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:textSize="24dp"
-            android:hint="Add title" />
+            android:text="Title" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -136,7 +126,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:textSize="20dp"
-            android:hint="Add description"/>
+            android:hint="Edit description" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -168,6 +158,7 @@
             android:layout_height="wrap_content"
             android:onClick="saveTask"
             android:text="Save"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -176,6 +167,7 @@
             android:layout_height="wrap_content"
             android:onClick="cancelEdit"
             android:text="Cancel"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 

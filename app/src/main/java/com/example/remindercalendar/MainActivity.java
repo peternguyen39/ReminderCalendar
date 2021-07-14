@@ -22,7 +22,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    static MainActivity mainActivity;
     public TasksListAdapter tasksListAdapter;
     private FloatingActionButton fab;
     private RecyclerView tasksView;
@@ -33,13 +32,11 @@ public class MainActivity extends AppCompatActivity {
     private Button filterImportant;
     private TaskViewModel taskViewModel;
     public int NEW_TASK_ACTIVITY_REQUEST_CODE = 1;
+    public static int EDIT_TASK_ACTIVITY_REQUEST_CODE = 2;
     //private static final String PRIMARY_CHANNEL_ID="primary_notification_channel";
     //private NotificationManager notificationManager;
     //private static int NOTIFICATION_ID=0;
 
-    public static MainActivity getInstance() {
-        return mainActivity;
-    }
 
     private void setListeners() {
         fab.setOnClickListener(new View.OnClickListener() {
@@ -115,6 +112,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Task status", "RECEIVED TASK!!!!");
                 taskViewModel.insert(task);
             } else Log.d("Task empty", "TASK IS EMPTY AND NOT ADDED!!!");
+
+        } else if (requestCode == EDIT_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Intent intent = data;
+            Bundle bundle = intent.getExtras();
+            if (bundle != null) {
+                Task task = (Task) data.getSerializableExtra("EditedTask");
+                Log.d("Task status", "RECEIVED EDITED TASK!!!");
+
+                taskViewModel.updateTask(task);
+            }
         } else {
             Toast.makeText(
                     getApplicationContext(),
@@ -131,7 +138,6 @@ public class MainActivity extends AppCompatActivity {
         init();
         actionToolbar();
         setListeners();
-        mainActivity = this;
 
         tasksListAdapter = new TasksListAdapter(this);
         tasksView.setAdapter(tasksListAdapter);

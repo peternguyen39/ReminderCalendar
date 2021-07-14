@@ -1,5 +1,6 @@
 package com.example.remindercalendar;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -91,10 +92,11 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Toda
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(v.getContext(), TaskViewActivity.class);
+                    Context context = (Context) v.getContext();
+                    Intent intent = new Intent(context, TaskViewActivity.class);
                     intent.putExtra("TaskView", tasksListAdapter.taskList.get(getAdapterPosition()));
                     Log.d("Intent", String.valueOf(intent));
-                    v.getContext().startActivity(intent);
+                    ((Activity) context).startActivityForResult(intent, MainActivity.EDIT_TASK_ACTIVITY_REQUEST_CODE);
                 }
             });
         }

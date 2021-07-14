@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
@@ -17,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class TaskViewActivity extends AppCompatActivity {
-    private EditText taskview_title;
+    private TextView taskview_title;
     private TextView taskview_duetime;
     private TextView taskview_duedate;
     private EditText taskview_description;
@@ -56,7 +55,6 @@ public class TaskViewActivity extends AppCompatActivity {
         taskview_duedate = findViewById(R.id.taskview_duedate_text);
         taskview_duetime = findViewById(R.id.taskview_duetime_text);
         taskview_description = findViewById(R.id.taskview_description_text);
-        taskview_editButton = findViewById(R.id.taskview_edit_button);
         taskview_dateButton = findViewById(R.id.taskview_date_button);
         taskview_timeButton = findViewById(R.id.taskview_time_button);
         taskview_saveButton = findViewById(R.id.taskview_save_button);
@@ -74,11 +72,12 @@ public class TaskViewActivity extends AppCompatActivity {
     public void initialState() {
         taskview_title.setText(currentTask.title);
         taskview_description.setText(currentTask.task_description);
-        taskview_duedate.setText(new SimpleDateFormat("EEE, dd-MM-yyyy").format(currentTask.due_time.getTime()));
-        taskview_duetime.setText(new SimpleDateFormat("hh:mm").format(currentTask.due_time.getTime()));
+        taskview_duedate.setText(new SimpleDateFormat("dd-MM-yyyy").format(currentTask.due_time.getTime()));
+        taskview_duetime.setText(new SimpleDateFormat("KK:mm aa").format(currentTask.due_time.getTime()));
         star.setChecked(currentTask.starred);
         calendar = currentTask.due_time;
 
+        /*
         taskview_title.setEnabled(false);
         taskview_description.setEnabled(false);
         taskview_editButton.setEnabled(true);
@@ -91,6 +90,7 @@ public class TaskViewActivity extends AppCompatActivity {
         taskview_saveButton.setVisibility(View.INVISIBLE);
         taskview_cancelButton.setEnabled(false);
         taskview_cancelButton.setVisibility(View.INVISIBLE);
+         */
     }
 
     public void showDatePicker(View view) {
@@ -100,7 +100,7 @@ public class TaskViewActivity extends AppCompatActivity {
 
     public void processDatePickerResult(int year, int month, int day) {
         calendar.set(year, month, day);
-        taskview_duedate.setText(new SimpleDateFormat("EEE, dd-MM-yyyy").format(calendar.getTime()));
+        taskview_duedate.setText(new SimpleDateFormat("dd-MM-yyyy").format(calendar.getTime()));
     }
 
     public void showTimePicker(View view) {
@@ -111,13 +111,10 @@ public class TaskViewActivity extends AppCompatActivity {
     public void processTimePickerResult(int hourOfDay, int minute) {
         calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
         calendar.set(Calendar.MINUTE, minute);
-        taskview_duedate.setText(new SimpleDateFormat("hh:mm").format(calendar.getTime()));
+        taskview_duedate.setText(new SimpleDateFormat("KK:mm aa").format(calendar.getTime()));
     }
 
-    public void deleteTask(View view) {
-
-    }
-
+    /*
     public void editTask(View view) {
         taskview_title.setEnabled(true);
         taskview_description.setEnabled(true);
@@ -132,16 +129,22 @@ public class TaskViewActivity extends AppCompatActivity {
         taskview_cancelButton.setEnabled(true);
         taskview_cancelButton.setVisibility(View.VISIBLE);
     }
-
+    */
     public void saveTask(View view) {
         currentTask.title = taskview_title.getText().toString();
         currentTask.due_time = calendar;
         currentTask.task_description = taskview_description.getText().toString();
-        initialState();
+        Intent intent = new Intent();
+        intent.putExtra("EditedTask", currentTask);
+        setResult(RESULT_OK, intent);
+        finish();
     }
 
     public void cancelEdit(View view) {
         initialState();
+        Intent intent = new Intent();
+        setResult(RESULT_CANCELED);
+        finish();
     }
 
     public void tickStarred(View view) {
