@@ -33,6 +33,12 @@ public class TaskRepository {
         new updateTaskAsyncTask(taskDAO).execute(task);
     }
 
+    //public LiveData<List<Task>> getImportantTasks() {
+    //new importantAsyncTask(taskDAO).execute();
+    //  allTasks=taskDAO.importantTask();
+    //    return allTasks;
+    //}
+
     private static class insertAsyncTask extends AsyncTask<Task, Void, Void> {
         private TaskDAO AsyncTaskDao;
 
@@ -75,4 +81,20 @@ public class TaskRepository {
             return null;
         }
     }
+/*
+    private static class importantAsyncTask extends AsyncTask<Void, Void, Void> {
+        private TaskDAO mAsyncTaskDao;
+
+        importantAsyncTask(TaskDAO dao) {
+            mAsyncTaskDao = dao;
+        }
+
+        @Override
+        protected Void doInBackground(final Void... voids) {
+            mAsyncTaskDao.importantTask();
+            return null;
+        }
+    }
+
+ */
 }

@@ -87,6 +87,7 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Toda
                 @Override
                 public void onClick(View v) {
                     tasksListAdapter.taskList.get(getAdapterPosition()).starred = star.isChecked();
+                    taskViewModel.updateTask(tasksListAdapter.taskList.get(getAdapterPosition()));
                 }
             });
             itemView.setOnClickListener(new View.OnClickListener() {

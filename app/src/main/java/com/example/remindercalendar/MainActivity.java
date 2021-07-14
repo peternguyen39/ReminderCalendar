@@ -49,24 +49,14 @@ public class MainActivity extends AppCompatActivity {
         filterAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                taskViewModel.getAllTasks().observe(MainActivity.this, new Observer<List<Task>>() {
-//                    @Override
-//                    public void onChanged(List<Task> tasks) {
-//                        tasksListAdapter.setTaskList(tasks);
-//                    }
-//                });
+                taskViewModel.getAllTasks();
                 drawerLayout.closeDrawer(GravityCompat.START);
             }
         });
         filterImportant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                taskViewModel.getImportantTasks().observe(MainActivity.this, new Observer<List<Task>>() {
-//                    @Override
-//                    public void onChanged(List<Task> tasks) {
-//                        tasksListAdapter.setTaskList(tasks);
-//                    }
-//                });
+                //taskViewModel.getImportantTasks();
                 drawerLayout.closeDrawer(GravityCompat.START);
             }
         });

@@ -34,4 +34,8 @@ public class TaskViewModel extends AndroidViewModel {
     public void updateTask(Task task) {
         repository.updateTask(task);
     }
+
+    //public void getImportantTasks() {
+    //    allTasks=repository.getImportantTasks();
+    //}
 }
