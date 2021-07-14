@@ -22,6 +22,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
+    static MainActivity mainActivity;
     public TasksListAdapter tasksListAdapter;
     private FloatingActionButton fab;
     private RecyclerView tasksView;
@@ -36,28 +37,8 @@ public class MainActivity extends AppCompatActivity {
     //private NotificationManager notificationManager;
     //private static int NOTIFICATION_ID=0;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        init();
-        actionToolbar();
-        setListeners();
-
-        tasksListAdapter = new TasksListAdapter(this);
-        tasksView.setAdapter(tasksListAdapter);
-        tasksView.setLayoutManager(new LinearLayoutManager(this));
-
-        taskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
-        taskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
-            @Override
-            public void onChanged(List<Task> tasks) {
-                tasksListAdapter.setTaskList(tasks);
-            }
-        });
-        //createNotifChannel();
-
+    public static MainActivity getInstance() {
+        return mainActivity;
     }
 
     private void setListeners() {
@@ -140,6 +121,31 @@ public class MainActivity extends AppCompatActivity {
                     "Cannot add task",
                     Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        init();
+        actionToolbar();
+        setListeners();
+        mainActivity = this;
+
+        tasksListAdapter = new TasksListAdapter(this);
+        tasksView.setAdapter(tasksListAdapter);
+        tasksView.setLayoutManager(new LinearLayoutManager(this));
+
+        taskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
+        taskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
+            @Override
+            public void onChanged(List<Task> tasks) {
+                tasksListAdapter.setTaskList(tasks);
+            }
+        });
+        //createNotifChannel();
+
     }
 
     /*
