@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.TodayViewHolder> {
+public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.TodayViewHolder> {
     private List<Task> taskList;
     private LayoutInflater inflater;
 
-    public TodayListAdapter(Context context) {
+    public TasksListAdapter(Context context) {
         inflater = LayoutInflater.from(context);
     }
 
@@ -31,7 +31,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
     }
 
     @Override
-    public void onBindViewHolder(@NonNull TodayListAdapter.TodayViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull TasksListAdapter.TodayViewHolder holder, int position) {
 
         if (taskList != null) {
             Task current = taskList.get(position);
@@ -49,6 +49,18 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         notifyDataSetChanged();
     }
 
+    void filterList(String filter_type) {
+        filter_type.toLowerCase();
+        switch (filter_type) {
+            case "all":
+                break;
+            case "important":
+                break;
+            case "today":
+                break;
+        }
+    }
+
     @Override
     public int getItemCount() {
         if (taskList != null)
@@ -60,26 +72,26 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         private TextView title;
         private TextView duedate;
         private CheckBox star;
-        private TodayListAdapter todayListAdapter;
+        private TasksListAdapter tasksListAdapter;
         private Context context;
 
-        public TodayViewHolder(TodayListAdapter listAdapter, @NonNull View itemView) {
+        public TodayViewHolder(TasksListAdapter listAdapter, @NonNull View itemView) {
             super(itemView);
-            todayListAdapter = listAdapter;
+            tasksListAdapter = listAdapter;
             title = itemView.findViewById(R.id.reminder_title);
             duedate = itemView.findViewById(R.id.due_date);
             star = itemView.findViewById(R.id.star_important);
             star.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    todayListAdapter.taskList.get(getAdapterPosition()).starred = star.isChecked();
+                    tasksListAdapter.taskList.get(getAdapterPosition()).starred = star.isChecked();
                 }
             });
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), TaskViewActivity.class);
-                    intent.putExtra("TaskView", todayListAdapter.taskList.get(getAdapterPosition()));
+                    intent.putExtra("TaskView", tasksListAdapter.taskList.get(getAdapterPosition()));
                     Log.d("Intent", String.valueOf(intent));
                     v.getContext().startActivity(intent);
                 }
