@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -43,7 +44,7 @@ public class AddTaskActivity extends AppCompatActivity {
         dd = calendar.get(Calendar.DAY_OF_MONTH);
         mm = calendar.get(Calendar.MONTH);
         yy = calendar.get(Calendar.YEAR);
-        hourOfDay = calendar.get(Calendar.HOUR);
+        hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
         minute = calendar.get(Calendar.MINUTE);
     }
 
@@ -82,7 +83,7 @@ public class AddTaskActivity extends AppCompatActivity {
             task = new Task();
             task.title = titleEditText.getText().toString();
             task.due_time = Calendar.getInstance();
-
+            Log.d("Time", String.valueOf(Calendar.getInstance()));
             task.due_time.set(yy, mm, dd, hourOfDay, minute);
 
             if ((hourOfDay == calendar.get(Calendar.HOUR)) && (minute == calendar.get(Calendar.MINUTE)) && (dd == calendar.get(Calendar.DATE)) && (mm == calendar.get(Calendar.MONTH)) && (yy == calendar.get(Calendar.YEAR))) {

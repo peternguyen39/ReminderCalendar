@@ -33,7 +33,6 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Toda
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.task_item, parent, false);
         Context context = parent.getContext();
         taskViewModel = ViewModelProviders.of((FragmentActivity) context).get(TaskViewModel.class);
-
         return new TodayViewHolder(this, view);
     }
 
@@ -43,7 +42,7 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Toda
         if (taskList != null) {
             Task current = taskList.get(position);
             holder.title.setText(current.title);
-            holder.duedate.setText(new SimpleDateFormat("EEE, dd-MM-yyyy hh:mm").format(current.due_time.getTime()));
+            holder.duedate.setText(new SimpleDateFormat("EEE, dd-MM-yyyy hh:mm aa").format(current.due_time.getTime()));
             holder.star.setChecked(current.starred);
             holder.delete_button.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -83,12 +82,6 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Toda
             duedate = itemView.findViewById(R.id.due_date);
             star = itemView.findViewById(R.id.star_important);
             delete_button = itemView.findViewById(R.id.delete_task_button);
-            delete_button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                }
-            });
             star.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
