@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -77,6 +76,8 @@ public class AddTaskActivity extends AppCompatActivity {
         String timeMessage = (hour_string + ":" + minute_string);
         this.hourOfDay = hourOfDay;
         this.minute = minute;
+
+
         timeTextView.setText(timeMessage);
     }
 
@@ -86,24 +87,25 @@ public class AddTaskActivity extends AppCompatActivity {
         Intent intent = new Intent();
         Log.d("saveButton", "CLICKED!!!");
         if (!TextUtils.isEmpty(titleEditText.getText().toString())) {
-            Log.d("Title", titleEditText.getText().toString());
+
             task = new Task();
             task.title = titleEditText.getText().toString();
             task.due_time = Calendar.getInstance();
-            Log.d("Calendar", dd + "/" + mm + "/" + yy + " " + hourOfDay + ":" + minute);
+
             task.due_time.set(yy, mm, dd, hourOfDay, minute);
+
+            if ((hourOfDay == calendar.get(Calendar.HOUR)) && (minute == calendar.get(Calendar.MINUTE)) && (dd == calendar.get(Calendar.DATE)) && (mm == calendar.get(Calendar.MONTH)) && (yy == calendar.get(Calendar.YEAR))) {
+                task.due_time.add(Calendar.HOUR, 1);
+            }
+
             task.task_description = descEditText.getText().toString();
             task.starred = addTask_isStarred.isChecked();
             task.reminder_time = task.due_time;
 
-            Log.d("TASK title", task.title);
-            Log.d("TASK due time", String.valueOf(task.due_time));
-            Log.d("TASK starred", String.valueOf(task.starred));
-            Log.d("TASK description", task.task_description);
 
             intent.putExtra(EXTRA_REPLY, task);
             setResult(RESULT_OK, intent);
-            Log.d("TASK SENT", "TASK IS SENT IN INTENT!!!");
+
         } else {
             setResult(RESULT_CANCELED, intent);
         }

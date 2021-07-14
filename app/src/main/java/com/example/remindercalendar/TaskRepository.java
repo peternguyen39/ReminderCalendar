@@ -34,6 +34,7 @@ public class TaskRepository {
 
         @Override
         protected Void doInBackground(final Task... params) {
+            //Log.d("TaskRep task title",params[0].title);
             AsyncTaskDao.insert(params[0]);
             return null;
         }

@@ -2,16 +2,14 @@ package com.example.remindercalendar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-
-import androidx.appcompat.widget.Toolbar;
-
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -103,14 +101,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == NEW_TASK_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            Intent intent = this.getIntent();
+            Intent intent = data;
             Bundle bundle = intent.getExtras();
-            //TODO: CANNOT GETEXTRA DATA FROM INTENT -> INTENT EXTRAS ARE ALWAYS NULL
-            Log.d("Intent received:", String.valueOf(getIntent().getExtras()));
+            Log.d("Intent received:", String.valueOf(bundle));
             if (bundle != null) {
-                Task task = (Task) getIntent().getSerializableExtra(AddTaskActivity.EXTRA_REPLY);
+                Task task = (Task) data.getSerializableExtra(AddTaskActivity.EXTRA_REPLY);
                 Log.d("Task status", "RECEIVED TASK!!!!");
                 taskViewModel.insert(task);
             } else Log.d("Task empty", "TASK IS EMPTY AND NOT ADDED!!!");
@@ -121,5 +117,4 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
     }
-
 }
