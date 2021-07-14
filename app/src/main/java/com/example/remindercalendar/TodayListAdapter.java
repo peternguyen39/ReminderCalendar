@@ -2,6 +2,7 @@ package com.example.remindercalendar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             holder.title.setText(current.title);
             holder.duedate.setText(new SimpleDateFormat("EEE, dd-MM-yyyy hh:mm").format(current.due_time.getTime()));
             holder.star.setChecked(current.starred);
+
         } else {
             holder.title.setText("No Task Available");
         }
@@ -54,7 +56,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         else return 0;
     }
 
-    public class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class TodayViewHolder extends RecyclerView.ViewHolder {
         private TextView title;
         private TextView duedate;
         private CheckBox star;
@@ -76,18 +78,12 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(itemView.getContext(), TaskViewActivity.class);
+                    Intent intent = new Intent(v.getContext(), TaskViewActivity.class);
                     intent.putExtra("TaskView", todayListAdapter.taskList.get(getAdapterPosition()));
-                    itemView.getContext().startActivity(intent);
+                    Log.d("Intent", String.valueOf(intent));
+                    v.getContext().startActivity(intent);
                 }
             });
-        }
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(itemView.getContext(), TaskViewActivity.class);
-            intent.putExtra("TaskView", todayListAdapter.taskList.get(getAdapterPosition()));
-            itemView.getContext().startActivity(intent);
         }
     }
 }

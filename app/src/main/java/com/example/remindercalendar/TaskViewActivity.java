@@ -31,17 +31,17 @@ public class TaskViewActivity extends AppCompatActivity {
         taskview_description = findViewById(R.id.taskview_description_text);
         //star=findViewById(R.id.st);
 
-        Log.d("TaskView", String.valueOf(currentTask));
-        Log.d("TaskView", String.valueOf(currentTask.title));
-        Log.d("TaskView", String.valueOf(currentTask.due_time));
-        Log.d("TaskView", String.valueOf(currentTask.reminder_time));
 
         taskview_title.setText(currentTask.title);
         taskview_description.setText(currentTask.task_description);
         taskview_duetime.setText(new SimpleDateFormat("EEE, dd-MM-yyyy hh:mm").format(currentTask.due_time.getTime()));
+
+        Log.d("TaskView", String.valueOf(taskview_title.getText()));
+        Log.d("TaskView", String.valueOf(taskview_duetime.getText()));
+        Log.d("TaskView", String.valueOf(taskview_description.getText()));
+        Log.d("TaskView", String.valueOf(currentTask.reminder_time));
         //star.setChecked(currentTask.starred);
 
-        finish();
     }
 
 }
