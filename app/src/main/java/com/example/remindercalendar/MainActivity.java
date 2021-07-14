@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         init();
         actionToolbar();
         setListeners();
+
         addMenuItemsToMenuList();
 
         final TodayListAdapter adapter = new TodayListAdapter(this);
@@ -75,12 +76,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void openAddTaskActivity() {
-        Intent intent = new Intent(this, AddTaskActivity.class);
-
-        startActivity(intent);
-    }
-
     private void actionToolbar() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -91,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
                 drawerLayout.openDrawer(GravityCompat.START);
             }
         });
-        toolbar.setTitle("Remindinator");
     }
 
     private void init() {
