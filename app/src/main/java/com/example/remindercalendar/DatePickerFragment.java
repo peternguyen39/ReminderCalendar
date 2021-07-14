@@ -30,7 +30,13 @@ public class DatePickerFragment extends DialogFragment
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        AddTaskActivity activity = (AddTaskActivity) getActivity();
-        activity.processDatePickerResult(year, month, day);
+        if (TaskViewActivity.active) {
+            TaskViewActivity activityView = (TaskViewActivity) getActivity();
+            activityView.processDatePickerResult(year, month, day);
+        }
+        else {
+            AddTaskActivity activityAdd = (AddTaskActivity) getActivity();
+            activityAdd.processDatePickerResult(year, month, day);
+        }
     }
 }

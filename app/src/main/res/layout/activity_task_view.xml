@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:text="@string/current_task"
+        android:text="Current task"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,19 +22,38 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:text="@string/title"
+        android:text="Title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_textview" />
 
-    <TextView
+    <EditText
         android:id="@+id/taskview_title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
+        android:inputType="textPersonName"
         app:layout_constraintBaseline_toBaselineOf="@+id/taskview_title_label"
         app:layout_constraintStart_toEndOf="@+id/taskview_title_label" />
 
+    <TextView
+        android:id="@+id/taskview_duedate_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="Due date"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/taskview_title_label" />
+
+    <TextView
+        android:id="@+id/taskview_duedate_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        app:layout_constraintBaseline_toBaselineOf="@id/taskview_duedate_label"
+        app:layout_constraintStart_toEndOf="@id/taskview_duedate_label" />
 
     <TextView
         android:id="@+id/taskview_duetime_label"
@@ -44,7 +63,7 @@
         android:layout_marginTop="24dp"
         android:text="Due time:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskview_title_label" />
+        app:layout_constraintTop_toBottomOf="@+id/taskview_duedate_label" />
 
     <TextView
         android:id="@+id/taskview_duetime_text"
@@ -65,14 +84,70 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskview_duetime_label" />
 
-    <TextView
+    <EditText
         android:id="@+id/taskview_description_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
+        android:inputType="textCapSentences"
         app:layout_constraintBaseline_toBaselineOf="@+id/taskview_description_label"
         app:layout_constraintStart_toEndOf="@+id/taskview_description_label" />
+
+    <Button
+        android:id="@+id/taskview_edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="editTask"
+        android:text="Edit"
+        app:layout_constraintTop_toBottomOf="@+id/addTask_time_button"
+        tools:layout_editor_absoluteX="143dp" />
+
+    <Button
+        android:id="@+id/taskview_save_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="saveTask"
+        android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="256dp" />
+
+    <Button
+        android:id="@+id/taskView_date_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showDatePicker"
+        android:text="@string/date"
+        app:layout_constraintEnd_toStartOf="@+id/taskview_save_button"
+        tools:layout_editor_absoluteY="256dp" />
+
+    <Button
+        android:id="@+id/taskView_time_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="showTimePicker"
+        android:text="Time"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="256dp" />
+
+    <Button
+        android:id="@+id/taskView_cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="cancelEdit"
+        android:text="Cancel"
+        app:layout_constraintEnd_toStartOf="@+id/taskView_date_button"
+        app:layout_constraintStart_toEndOf="@+id/taskView_time_button"
+        tools:layout_editor_absoluteY="256dp" />
+
+    <CheckBox
+        android:id="@+id/taskview_isStarred_checkbox"
+        style="?android:attr/starStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="tickStarred"
+        tools:layout_editor_absoluteX="303dp"
+        tools:layout_editor_absoluteY="43dp" />
 
     <!--
     <TextView
