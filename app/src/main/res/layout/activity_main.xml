@@ -39,7 +39,8 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="16dp"
             android:backgroundTint="@color/orange_800"
-            android:background="@android:color/transparent"
+            android:background="@drawable/fab_background"
+
             android:contentDescription="@string/add_reminder"
             app:srcCompat="@drawable/ic_add_white"
             android:elevation="5dp"/>
@@ -56,6 +57,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp"/>
+        <Button
+            android:id="@+id/filter_all_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ALL"/>
+        <Button
+            android:id="@+id/filter_today_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TODAY"/>
+        <Button
+            android:id="@+id/filter_important_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="IMPORTANT"/>
+
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>

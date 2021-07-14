@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,18 +18,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    public TodayListAdapter todayListAdapter;
+    public TasksListAdapter tasksListAdapter;
     private FloatingActionButton fab;
-    private RecyclerView todayView;
+    private RecyclerView tasksView;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
-    private RecyclerView menuRecyclerView;
-    private List<MenuItem> menuItemList;
+    private Button filterAll;
+    private Button filterToday;
+    private Button filterImportant;
     private TaskViewModel taskViewModel;
     public int NEW_TASK_ACTIVITY_REQUEST_CODE = 1;
 
@@ -41,27 +42,18 @@ public class MainActivity extends AppCompatActivity {
         actionToolbar();
         setListeners();
 
-        addMenuItemsToMenuList();
-
-        final TodayListAdapter adapter = new TodayListAdapter(this);
-        todayView.setAdapter(adapter);
-        todayView.setLayoutManager(new LinearLayoutManager(this));
+        tasksListAdapter = new TasksListAdapter(this);
+        tasksView.setAdapter(tasksListAdapter);
+        tasksView.setLayoutManager(new LinearLayoutManager(this));
 
         taskViewModel = ViewModelProviders.of(this).get(TaskViewModel.class);
         taskViewModel.getAllTasks().observe(this, new Observer<List<Task>>() {
             @Override
             public void onChanged(List<Task> tasks) {
-                adapter.setTaskList(tasks);
+                tasksListAdapter.setTaskList(tasks);
             }
         });
         
-    }
-
-    private void addMenuItemsToMenuList() {
-        MenuItemAdapter menuItemAdapter = new MenuItemAdapter(menuItemList);
-
-        menuRecyclerView.setAdapter(menuItemAdapter);
-        menuRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void setListeners() {
@@ -70,6 +62,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddTaskActivity.class);
                 startActivityForResult(intent, NEW_TASK_ACTIVITY_REQUEST_CODE);
+            }
+        });
+        filterAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+        filterImportant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        filterToday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
@@ -88,15 +98,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        filterAll = (Button) findViewById(R.id.filter_all_button);
+        filterToday = (Button) findViewById(R.id.filter_today_button);
+        filterImportant = (Button) findViewById(R.id.filter_important_button);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        todayView = (RecyclerView) findViewById(R.id.today_view);
-        menuRecyclerView = (RecyclerView) findViewById(R.id.menu_list);
+        tasksView = (RecyclerView) findViewById(R.id.today_view);
         fab = (FloatingActionButton) findViewById(R.id.floating_action_button);
-
-        menuItemList = new ArrayList<MenuItem>();
-        menuItemList.add(new MenuItem("All"));
-        menuItemList.add(new MenuItem("Today"));
-        menuItemList.add(new MenuItem("Important"));
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
