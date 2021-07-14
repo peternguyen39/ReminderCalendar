@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class AddTaskActivity extends AppCompatActivity {
@@ -44,7 +46,7 @@ public class AddTaskActivity extends AppCompatActivity {
         dd = calendar.get(Calendar.DAY_OF_MONTH);
         mm = calendar.get(Calendar.MONTH);
         yy = calendar.get(Calendar.YEAR);
-        hourOfDay = calendar.get(Calendar.HOUR);
+        hourOfDay = calendar.get(Calendar.HOUR_OF_DAY);
         minute = calendar.get(Calendar.MINUTE);
     }
 
@@ -62,22 +64,25 @@ public class AddTaskActivity extends AppCompatActivity {
         yy = year;
         mm = month;
         dd = day;
-        String month_string = Integer.toString(month+1);
-        String day_string = Integer.toString(day);
-        String year_string = Integer.toString(year);
-        String dateMessage = (month_string + "/" + day_string + "/" + year_string);
-        dateTextView.setText(dateMessage);
+        //String month_string = Integer.toString(month+1);
+        //String day_string = Integer.toString(day);
+        //String year_string = Integer.toString(year);
+        //String dateMessage = (month_string + "/" + day_string + "/" + year_string);
+        Calendar temp = Calendar.getInstance();
+        temp.set(year, month, day);
+        dateTextView.setText(new SimpleDateFormat("dd-MM-yyyy").format(temp.getTime()));
+        //dateTextView.setText(dateMessage);
     }
 
     public void processTimePickerResult(int hourOfDay, int minute) {
-        String hour_string = Integer.toString(hourOfDay);
-        String minute_string = Integer.toString(minute);
-        String timeMessage = (hour_string + ":" + minute_string);
+        //String hour_string = Integer.toString(hourOfDay);
+        //String minute_string = Integer.toString(minute);
+        //String timeMessage = (hour_string + ":" + minute_string);
         this.hourOfDay = hourOfDay;
         this.minute = minute;
-
-
-        timeTextView.setText(timeMessage);
+        Calendar temp = Calendar.getInstance();
+        temp.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hourOfDay, minute);
+        timeTextView.setText(new SimpleDateFormat("KK:mm aa").format(temp.getTime()));
     }
 
     @SuppressLint("ResourceType")
@@ -89,7 +94,7 @@ public class AddTaskActivity extends AppCompatActivity {
             task = new Task();
             task.title = titleEditText.getText().toString();
             task.due_time = Calendar.getInstance();
-
+            Log.d("Time", String.valueOf(Calendar.getInstance()));
             task.due_time.set(yy, mm, dd, hourOfDay, minute);
 
             if ((hourOfDay == calendar.get(Calendar.HOUR)) && (minute == calendar.get(Calendar.MINUTE)) && (dd == calendar.get(Calendar.DATE)) && (mm == calendar.get(Calendar.MONTH)) && (yy == calendar.get(Calendar.YEAR))) {
