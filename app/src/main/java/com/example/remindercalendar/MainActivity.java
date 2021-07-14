@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(
                     getApplicationContext(),
-                    "Cannot add task",
+                    "Action cancelled",
                     Toast.LENGTH_LONG).show();
         }
     }
