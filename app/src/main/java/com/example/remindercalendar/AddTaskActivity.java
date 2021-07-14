@@ -19,9 +19,8 @@ import java.util.Calendar;
 public class AddTaskActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.remindercalendar.REPLY";
-
-    public Task task;
     private int yy, mm, dd, hourOfDay, minute;
+    public Task task;
     public TextView dateTextView;
     public TextView timeTextView;
     public CheckBox addTask_isStarred;
@@ -39,7 +38,6 @@ public class AddTaskActivity extends AppCompatActivity {
         addTask_isStarred = findViewById(R.id.addTask_isStarred_checkbox);
         titleEditText = findViewById(R.id.addTask_title_edittext);
         descEditText = findViewById(R.id.addTask_description_edittext);
-
 
         //set default date for Calendar
         calendar = Calendar.getInstance();
@@ -64,25 +62,16 @@ public class AddTaskActivity extends AppCompatActivity {
         yy = year;
         mm = month;
         dd = day;
-        //String month_string = Integer.toString(month+1);
-        //String day_string = Integer.toString(day);
-        //String year_string = Integer.toString(year);
-        //String dateMessage = (month_string + "/" + day_string + "/" + year_string);
-        Calendar temp = Calendar.getInstance();
-        temp.set(year, month, day);
-        dateTextView.setText(new SimpleDateFormat("dd-MM-yyyy").format(temp.getTime()));
-        //dateTextView.setText(dateMessage);
+        calendar.set(year, month, day);
+        dateTextView.setText(new SimpleDateFormat("EEE, dd-MM-yyyy").format(calendar.getTime()));
     }
 
     public void processTimePickerResult(int hourOfDay, int minute) {
-        //String hour_string = Integer.toString(hourOfDay);
-        //String minute_string = Integer.toString(minute);
-        //String timeMessage = (hour_string + ":" + minute_string);
         this.hourOfDay = hourOfDay;
         this.minute = minute;
-        Calendar temp = Calendar.getInstance();
-        temp.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, hourOfDay, minute);
-        timeTextView.setText(new SimpleDateFormat("KK:mm aa").format(temp.getTime()));
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        calendar.set(Calendar.MINUTE, minute);
+        timeTextView.setText(new SimpleDateFormat("hh:mm").format(calendar.getTime()));
     }
 
     @SuppressLint("ResourceType")
