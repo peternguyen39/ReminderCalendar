@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:text="@string/current_task"
-            android:textSize="30sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
         <Button
             android:id="@+id/taskview_edit_button"
@@ -39,7 +39,6 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_margin="2dp"
-            android:backgroundTint="@color/orange_800"
             android:text="@string/edit"
             android:onClick="editTask"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -55,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:textSize="24dp"
+            android:textSize="20dp"
             android:text="Title" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -71,7 +70,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:text="@string/due_date"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/taskview_duedate_text"
@@ -81,15 +80,18 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="@string/default_date"
-                android:textSize="20sp"/>
+                android:textSize="16sp"/>
 
             <Button
                 android:id="@+id/taskview_date_button"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:backgroundTint="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:textColor="@color/blue_500"
                 android:text="@string/pick_a_date_button_text"
                 android:onClick="showDatePicker"/>
 
@@ -108,7 +110,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:text="@string/due_time"
-                android:textSize="20sp" />
+                android:textSize="16sp" />
             <TextView
                 android:id="@+id/taskview_duetime_text"
                 android:layout_width="wrap_content"
@@ -117,14 +119,17 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:text="@string/default_time"
-                android:textSize="20sp"/>
+                android:textSize="16sp"/>
             <Button
                 android:id="@+id/taskview_time_button"
-                android:layout_width="120dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:backgroundTint="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:textColor="@color/blue_500"
                 android:text="@string/pick_a_time_button_text"
                 android:onClick="showTimePicker"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -135,7 +140,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:textSize="20dp"
+            android:textSize="16dp"
             android:hint="Edit description" />
 
         <LinearLayout
@@ -151,7 +156,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Important"
-                android:textSize="24dp"
+                android:textSize="20dp"
                 android:textAlignment="gravity"/>
         </LinearLayout>
     </LinearLayout>
@@ -166,6 +171,7 @@
             android:id="@+id/taskview_save_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange_800"
             android:onClick="saveTask"
             android:text="Save"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -175,6 +181,9 @@
             android:id="@+id/taskview_cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            android:background="@android:color/transparent"
+            android:textColor="@color/orange_800"
             android:onClick="cancelEdit"
             android:text="Cancel"
             app:layout_constraintBottom_toBottomOf="parent"
