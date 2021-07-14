@@ -91,7 +91,7 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Toda
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(v.getContext(), TaskViewActivity.class);
-                    intent.putExtra("TaskView", todayListAdapter.taskList.get(getAdapterPosition()));
+                    intent.putExtra("TaskView", tasksListAdapter.taskList.get(getAdapterPosition()));
                     Log.d("Intent", String.valueOf(intent));
                     v.getContext().startActivity(intent);
                 }
