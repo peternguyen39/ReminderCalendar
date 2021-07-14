@@ -2,6 +2,7 @@ package com.example.remindercalendar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,7 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Toda
             holder.title.setText(current.title);
             holder.duedate.setText(new SimpleDateFormat("EEE, dd-MM-yyyy hh:mm").format(current.due_time.getTime()));
             holder.star.setChecked(current.starred);
+
         } else {
             holder.title.setText("No Task Available");
         }
@@ -66,11 +68,12 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Toda
         else return 0;
     }
 
-    public class TodayViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class TodayViewHolder extends RecyclerView.ViewHolder {
         private TextView title;
         private TextView duedate;
         private CheckBox star;
         private TasksListAdapter tasksListAdapter;
+        private Context context;
 
         public TodayViewHolder(TasksListAdapter listAdapter, @NonNull View itemView) {
             super(itemView);
@@ -84,14 +87,15 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Toda
                     tasksListAdapter.taskList.get(getAdapterPosition()).starred = star.isChecked();
                 }
             });
-        }
-
-
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(v.getContext(), TaskViewActivity.class);
-            intent.putExtra("ListPosition", getAdapterPosition());
-            v.getContext().startActivity(intent);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), TaskViewActivity.class);
+                    intent.putExtra("TaskView", todayListAdapter.taskList.get(getAdapterPosition()));
+                    Log.d("Intent", String.valueOf(intent));
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

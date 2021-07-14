@@ -2,16 +2,19 @@ package com.example.remindercalendar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.text.SimpleDateFormat;
+
 public class TaskViewActivity extends AppCompatActivity {
     private TextView taskview_title;
-    private TextView taskview_duedate;
     private TextView taskview_duetime;
     private TextView taskview_description;
-    private int listPosition;
+    private CheckBox star;
     private Task currentTask;
 
     @Override
@@ -20,15 +23,25 @@ public class TaskViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_task_view);
 
         Intent intent = getIntent();
-        listPosition = intent.getIntExtra("ListPosition", 0);
+        currentTask = (Task) intent.getSerializableExtra("TaskView");
+        if (currentTask == null) return;
 
         taskview_title = findViewById(R.id.taskview_title_text);
-        taskview_duedate = findViewById(R.id.taskview_duedate_text);
         taskview_duetime = findViewById(R.id.taskview_duetime_text);
         taskview_description = findViewById(R.id.taskview_description_text);
+        //star=findViewById(R.id.st);
 
-        //TODO: Retrieve current task from list and display onscreen
-        // currentTask=
+
+        taskview_title.setText(currentTask.title);
+        taskview_description.setText(currentTask.task_description);
+        taskview_duetime.setText(new SimpleDateFormat("EEE, dd-MM-yyyy hh:mm").format(currentTask.due_time.getTime()));
+
+        Log.d("TaskView", String.valueOf(taskview_title.getText()));
+        Log.d("TaskView", String.valueOf(taskview_duetime.getText()));
+        Log.d("TaskView", String.valueOf(taskview_description.getText()));
+        Log.d("TaskView", String.valueOf(currentTask.reminder_time));
+        //star.setChecked(currentTask.starred);
+
     }
 
 }

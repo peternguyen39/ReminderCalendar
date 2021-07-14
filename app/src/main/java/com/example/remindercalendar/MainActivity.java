@@ -32,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
     private Button filterImportant;
     private TaskViewModel taskViewModel;
     public int NEW_TASK_ACTIVITY_REQUEST_CODE = 1;
+    //private static final String PRIMARY_CHANNEL_ID="primary_notification_channel";
+    //private NotificationManager notificationManager;
+    //private static int NOTIFICATION_ID=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 tasksListAdapter.setTaskList(tasks);
             }
         });
-        
+        //createNotifChannel();
+
     }
 
     private void setListeners() {
@@ -137,4 +141,39 @@ public class MainActivity extends AppCompatActivity {
                     Toast.LENGTH_LONG).show();
         }
     }
+
+    /*
+    public void createNotifChannel(){
+        notificationManager=(NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O)
+        {
+            //create notification channel
+            NotificationChannel notificationChannel=new NotificationChannel(PRIMARY_CHANNEL_ID,"Reminders",NotificationManager.IMPORTANCE_HIGH);
+            notificationChannel.enableLights(true);
+            notificationChannel.setLightColor(Color.YELLOW);
+            notificationChannel.enableVibration(true);
+            notificationChannel.setDescription("Reminder Alert");
+            notificationManager.createNotificationChannel(notificationChannel);
+        }
+    }
+
+    public void sendNotification(Task task){
+        NotificationCompat.Builder notifyBuilder=getNotificationBuilder(task);
+        notificationManager.notify(NOTIFICATION_ID,notifyBuilder.build());
+    }
+    private NotificationCompat.Builder getNotificationBuilder(Task task){
+
+        Intent notificationIntent=new Intent(this,MainActivity.class);
+        PendingIntent notificationPendingIntent=PendingIntent.getActivity(this,NOTIFICATION_ID,notificationIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Builder notifyBuilder=new NotificationCompat.Builder(this,PRIMARY_CHANNEL_ID)
+                .setContentTitle(task.title)
+                .setContentText((new SimpleDateFormat("EEE, dd-MM-yyyy hh:mm").format(task.due_time.getTime())))
+                .setSmallIcon(R.drawable.ic_alarm)
+                .setContentIntent(notificationPendingIntent)
+                .setAutoCancel(true);
+        return notifyBuilder;
+    }
+
+     */
 }

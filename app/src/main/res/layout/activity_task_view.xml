@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
-        android:text="Current task"
+        android:text="@string/current_task"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
-        android:text="Title"
+        android:text="@string/title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/order_textview" />
 
@@ -32,28 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:inputType="textPersonName"
         app:layout_constraintBaseline_toBaselineOf="@+id/taskview_title_label"
         app:layout_constraintStart_toEndOf="@+id/taskview_title_label" />
 
-    <TextView
-        android:id="@+id/taskview_duedate_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
-        android:text="Due date"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskview_title_label" />
-
-    <TextView
-        android:id="@+id/taskview_duedate_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:ems="10"
-        app:layout_constraintBaseline_toBaselineOf="@id/taskview_duedate_label"
-        app:layout_constraintStart_toEndOf="@id/taskview_duedate_label" />
 
     <TextView
         android:id="@+id/taskview_duetime_label"
@@ -63,7 +44,7 @@
         android:layout_marginTop="24dp"
         android:text="Due time:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskview_duedate_label" />
+        app:layout_constraintTop_toBottomOf="@+id/taskview_title_label" />
 
     <TextView
         android:id="@+id/taskview_duetime_text"
@@ -90,7 +71,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:inputType="textCapSentences"
         app:layout_constraintBaseline_toBaselineOf="@+id/taskview_description_label"
         app:layout_constraintStart_toEndOf="@+id/taskview_description_label" />
 

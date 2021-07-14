@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -85,7 +84,6 @@ public class AddTaskActivity extends AppCompatActivity {
     public void saveButton(View view) {
 
         Intent intent = new Intent();
-        Log.d("saveButton", "CLICKED!!!");
         if (!TextUtils.isEmpty(titleEditText.getText().toString())) {
 
             task = new Task();
@@ -113,6 +111,8 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 
     public void cancelButton(View view) {
+        Intent intent = new Intent();
+        setResult(RESULT_CANCELED, intent);
         finish();
     }
 
