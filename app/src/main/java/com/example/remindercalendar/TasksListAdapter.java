@@ -49,18 +49,6 @@ public class TasksListAdapter extends RecyclerView.Adapter<TasksListAdapter.Toda
         notifyDataSetChanged();
     }
 
-    void filterList(String filter_type) {
-        filter_type.toLowerCase();
-        switch (filter_type) {
-            case "all":
-                break;
-            case "important":
-                break;
-            case "today":
-                break;
-        }
-    }
-
     @Override
     public int getItemCount() {
         if (taskList != null)
