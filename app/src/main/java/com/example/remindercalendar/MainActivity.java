@@ -53,7 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 adapter.setTaskList(tasks);
             }
         });
-        
+
+
     }
 
     private void addMenuItemsToMenuList() {

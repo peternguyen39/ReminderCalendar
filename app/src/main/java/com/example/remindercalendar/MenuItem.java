@@ -1,12 +1,5 @@
 package com.example.remindercalendar;
 
-import android.view.View;
-import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-
-import org.jetbrains.annotations.NotNull;
-
 import java.io.Serializable;
 
 public class MenuItem implements Serializable {

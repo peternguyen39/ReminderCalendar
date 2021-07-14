@@ -59,6 +59,7 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
         private TextView duedate;
         private CheckBox star;
         private TodayListAdapter todayListAdapter;
+        private Context context;
 
         public TodayViewHolder(TodayListAdapter listAdapter, @NonNull View itemView) {
             super(itemView);
@@ -72,14 +73,21 @@ public class TodayListAdapter extends RecyclerView.Adapter<TodayListAdapter.Toda
                     todayListAdapter.taskList.get(getAdapterPosition()).starred = star.isChecked();
                 }
             });
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(itemView.getContext(), TaskViewActivity.class);
+                    intent.putExtra("TaskView", todayListAdapter.taskList.get(getAdapterPosition()));
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
-
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(v.getContext(), TaskViewActivity.class);
-            intent.putExtra("ListPosition", getAdapterPosition());
-            v.getContext().startActivity(intent);
+            Intent intent = new Intent(itemView.getContext(), TaskViewActivity.class);
+            intent.putExtra("TaskView", todayListAdapter.taskList.get(getAdapterPosition()));
+            itemView.getContext().startActivity(intent);
         }
     }
 }
